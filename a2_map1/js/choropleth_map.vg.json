@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "COVID-19 Active Cases (10 Oct 2020)",
+  "title": "GDP of BRICS countries in 2002",
   "width": 800,
   "height": 400,
   "projection": {"type": "equalEarth"},
@@ -19,12 +19,12 @@
         "fields": ["Active"]
       }
     },
-    {"calculate": "datum.Active + 0.1", "as": "Active Cases"}
+    {"calculate": "datum.Active + 0.1", "as": "GDP(US dollers)"}
   ],
   "mark": {"type": "geoshape"},
   "encoding": {
     "color": {
-      "field": "Active Cases",
+      "field": "GDP(US dollers)",
       "type": "quantitative",
       "scale": {"type": "log"}
     },
