@@ -16,21 +16,21 @@
           "url": "https://baizhaojin.github.io/FIT3179/a2_map1/data/covid_10_10_2020.csv"
         },
         "key": "Country",
-        "fields": ["Active"]
+        "fields": ["GDP (billion US dollers)"]
       }
     },
-    {"calculate": "datum.Active + 0.1", "as": "GDP(US dollers)"}
+    {"calculate": "datum.GDP (billion US dollers) + 0.1", "as": "GDP(billion US dollers)"}
   ],
   "mark": {"type": "geoshape"},
   "encoding": {
     "color": {
-      "field": "GDP(US dollers)",
+      "field": "GDP(billion US dollers)",
       "type": "quantitative",
-      "scale": {"type": "log"}
+      "scale": {"type": "linear"}
     },
     "tooltip": [
       {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-      {"field": "Active", "type": "quantitative"}
+      {"field": "GDP (billion US dollers)", "type": "quantitative"}
     ]
   }
 }
