@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "COVID-19 Active Cases (10 Oct 2020)",
+  "title": "GDP in each country in 2002",
   "width": 800,
   "height": 400,
   "projection": {"type": "equalEarth"},
@@ -15,22 +15,22 @@
         "data": {
           "url": "https://baizhaojin.github.io/FIT3179/a2_map/data/covid_10_10_2020.csv"
         },
-        "key": "Country",
-        "fields": ["Active"]
+        "key": "Country Name",
+        "fields": ["GDP"]
       }
     },
-    {"calculate": "datum.Active + 0.1", "as": "Active Cases"}
+    {"calculate": "datum.GDP + 0.1", "as": "GDP in 2002"}
   ],
   "mark": {"type": "geoshape"},
   "encoding": {
     "color": {
-      "field": "Active Cases",
+      "field": "GDP in 2002",
       "type": "quantitative",
       "scale": {"type": "log"}
     },
     "tooltip": [
-      {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-      {"field": "Active", "type": "quantitative"}
+      {"field": "properties.NAME", "type": "nominal", "title": "Country Name"},
+      {"field": "GDP", "type": "quantitative"}
     ]
   }
 }
