@@ -13,7 +13,7 @@
       "lookup": "properties.NAME",
       "from": {
         "data": {
-          "url": "https://baizhaojin.github.io/FIT3179/a2_map/data/covid_10_10_2020_old.csv"
+          "url": "https://baizhaojin.github.io/FIT3179/a2_map/data/gdp_2002.csv"
         },
         "key": "Country",
         "fields": ["Active"]
