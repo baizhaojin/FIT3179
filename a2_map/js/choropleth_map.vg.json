@@ -19,12 +19,12 @@
         "fields": ["GDP"]
       }
     },
-    {"calculate": "datum.GDP + 0.1", "as": "GDP in 2002"}
+    {"calculate": "datum.GDP + 0.1", "as": "GDP"}
   ],
   "mark": {"type": "geoshape"},
   "encoding": {
     "color": {
-      "field": "GDP in 2002",
+      "field": "GDP",
       "type": "quantitative",
       "scale": {"type": "log"}
     },
