@@ -1,0 +1,55 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "CPI-GNI (per cita) for BRICS and five developed countries",
+  "data": {
+    "url": "data/GNI.csv"
+  },
+  "params": [
+    {
+      "name": "year_selection",
+      "value": 2000,
+      "bind": {"input": "range", "min": 2000, "max": 2020, "step": 1}
+    }
+  ],
+  "selection": {
+    "continent_selection": {
+      "type": "multi", "fields": ["year"], "bind": "legend"
+    }
+  },
+  "transform":[
+    {"filter": "datum.GNI > 0"},
+    {"filter": "datum.cpi > 0"},
+    {"filter": "datum.year == year_selection"}
+  ],
+  "mark": "point",
+  "encoding": {
+    "x": {
+      "field": "cpi",
+      "type": "quantitative",
+      "title": "Consumer Price Index (2010 = 100)",
+      "axis": {"tickCount": 5},
+      "scale": {"domain":[1, 200]}
+    },
+    "y": {
+      "field": "GNI",
+      "type": "quantitative",
+      "title": "GNI per capita (constant 2015 US dollers)",
+      "axis": {"tickCount": 5},
+      "scale": {"domain":[1, 65000]}
+    },
+    "size": {"field": "GNI", "type": "quantitative",  "scale": {"range": [30, 500]}},
+    "fill": {"field": "country", "type": "nominal","scale": {"domain":["Brazil", "China", "India", "Russia", "South Africa", "Germany","France", "United Kingdom", "United States", "Australia"], "range": ["#984ea3", "#e41a1c", "#ff7f00", "#a6cee3", "#377eb8", "#a65628", "#0000FF", "#E47833", "#B5A642","#5F9F9F"]}},
+    "color": {"field": "country", "type": "nominal","scale": {"domain":["Brazil", "China", "India", "Russia", "South Africa", "Germany","France", "United Kingdom", "United States", "Australia"], "range": ["#984ea3", "#e41a1c", "#ff7f00", "#a6cee3", "#377eb8", "#a65628", "#0000FF", "#E47833", "#B5A642", "#5F9F9F"]}},
+    "opacity": {
+      "condition": {"selection": "year_selection", "value": 0.8},
+      "value": 0.2
+    },
+    "tooltip": [
+      {"field": "country", "type": "nominal"},
+      {"field": "year", "type": "ordinal", "format": ","},
+      {"field": "GNI", "type": "quantitative", "format": ",", "title": "GNI per capita (US dollers)"},
+      {"field": "cpi", "type": "quantitative", "format": ",", "title": "CPI (2010 = 100)"}
+    ]
+  }
+
+  }

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Data Visualisation 2</title>
+    <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+  
+    <!-- Import pure.css -->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+      integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  
+    <!-- CSS file -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+
+</head>
+
+
+<body>
+    <div class="page">
+
+        <!-- pure grid group -->
+        <div class="pure-g">
+          <div class="pure-u-1-1">
+            <h1 style = "text-align:center">Development of BRICS in the 21st century</h1>
+          </div>
+        </div>
+        <!-- end pure grid group -->     
+
+    <!-- pure grid group -->
+      <div class="pure-u">
+        <div class="description description-left">
+          <div id="map" class="vis-container"></div>
+        </div>
+      </div>
+    <!-- end pure grid group -->
+
+
+    <div class="pure-g">
+      <div class="pure-u">
+          <p style = "font: italic 18px Helvetica, sans-serif">Introduced as a concept in 2001, gradually becoming an entity after 2006, and maturing with South Africa's accession in 2010, BRICS was once seen as the most dynamic and promising emerging economy of the 21st century. 
+            So, after <span class = 'important_text'>nearly 22 years of development</span>, what about the BRICS countries now? Have new differences emerged among the BRICS countries? We will examine these questions in <span class = 'important_text'>4 ways</span>.</p>
+        </div>
+      </div>   
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-2-3">
+        <div class="description description-left">
+          <h2>1. Changes in GDP shares</h2>
+          <p>From 2000 to 2021, the share of BRICS countries' GDP in the world rose from about 10% to 25%.
+            On the other hand, however, the GDP shares of <span class = 'important_text'>China, Russia and India</span> did increase significantly, but the other two countries' GDP shares did not change significantly. This visually illustrates that there are indeed differences in economic development among the BRICS countries. </p>
+        </div>
+      </div>
+      <div class="pure-u-1-3">
+        <div class="description description-right">
+            <div id="pie_chart" class="vis-container"></div>
+        </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-2-3">
+        <div id="line_chart" class="vis-container"></div>
+      </div>
+      <div class="pure-u-1-3">
+        <div class="description description-right">
+          <h2>2. Changes in population growth rate</h2>
+          <p> All of the BRICS countries showing a year-on-year decline in population growth after <span class = 'important_text'>2013</span>. Among them, Russia remains at a negative population growth level year-round, while China is also approaching the critical line. When there is no longer a demographic dividend, it is imperative to develop <span class = 'important_text'>new industries driven by high technology</span>, which is naturally one of the tasks of the BRICS countries in the future.
+          </p>
+        </div>
+      </div>
+
+    </div>
+    <!-- end pure grid group -->
+  
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div id="bar_chart" class="vis-container"></div>
+      </div>
+      <div class="pure-u-1-2">
+        <div class="description description-right">
+          <h2>3. Changes in industry</h2>
+          <p>After entering the 21st century, industries in all BRICS countries have developed. But <span class = 'important_text'>China</span> has been way ahead, surpassing the other four BRICS countries not only in terms of <span class = 'important_text'>total</span> industrial value added, but also in terms of its <span class = 'important_text'>incremental growth</span>.</p>
+        </div>
+      </div>
+
+    </div>
+    <!-- end pure grid group -->
+
+        <!-- pure grid group -->
+        <div class="pure-g">
+          <div class="pure-u-1-2">
+            <div class="description description-left">
+              <h2>4. Changes in price and income</h2>
+              <p>With the gradual economic development, the <span class = 'important_text'>GNI per cita</span> of BRICS countries also shows a steady growth trend, which reflects the rising living standard of people living in BRICS countries; 
+                however, if compared with the five developed countries as shown in the chart, there is still a big gap between BRICS countries and them in this regard. 
+                In terms of <span class = 'important_text'>domestic prices</span>, the growth speed of the consumer price index of BRICS countries is also significantly higher than that of developed countries. This shows that despite some achievements, the BRICS countries still have a long way to go in improving people's livelihood. </p>
+            </div>
+          </div>
+          <div class="pure-u-1-2">
+            <div class="description description-right">
+                <div id="scatter_plot" class="vis-container"></div>
+            </div>
+          </div>
+        </div>
+        <!-- end pure grid group -->
+      
+        <div class="pure-g">
+          <div class="pure-u">
+              <p style = "font: italic 18px Helvetica, sans-serif">At the end of this visualization work, I sincerely wish the BRICS countries and all countries in the world a good development prospect in the future.</p>
+            </div>
+          </div>   
+
+
+    <script type="text/javascript">
+        var vg_1 = "./bar_chart.vg.json";
+        vegaEmbed("#bar_chart", vg_1).then(function(result) {
+        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+
+        var vg_2 = "./choropleth_map.vg.json";
+        vegaEmbed("#map", vg_2).then(function(result) {
+        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+
+        var vg_3 = "./line_chart.json";
+        vegaEmbed("#line_chart", vg_3).then(function(result) {
+        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+
+        var vg_4 = "./pie_chart.json";
+        vegaEmbed("#pie_chart", vg_4).then(function(result) {
+        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+
+        var vg_5 = "./scatter_plot.vg.json";
+        vegaEmbed("#scatter_plot", vg_5).then(function(result) {
+        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+    </script>
+
+</body>
+
+</html>

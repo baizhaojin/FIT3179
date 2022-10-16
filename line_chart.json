@@ -1,0 +1,51 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Population growth rate of BRICS countries in 2000-2021",
+    "data": { "url": "data/population.csv" },
+    "encoding": {
+      "x": {"field": "year", "type": "ordinal", "title": "year"},
+      "y": {"field": "rate", "type": "quantitative", "title": "population growth rate (%)"},
+      "color": {
+        "condition": {
+          "param": "hover",
+          "field": "country", 
+          "type": "nominal",
+          "legend": null
+        },
+        "value": "grey"
+      },
+      "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.2},
+      "tooltip": [
+        {"field": "country", "type": "nominal"},
+        {"field": "year", "type": "ordinal", "format": ","},
+        {"field": "rate", "type": "quantitative", "format": ",", "title": "growth rate (%)"}
+      ]
+    },
+    "layer": [
+      {
+        "description": "transparent layer to make it easier to trigger selection",
+        "params": [
+          {
+            "name": "hover",
+            "value": [{"country": "AAPL"}],
+            "select": {"type": "point", "fields": ["country"], "on": "mouseover"}
+          }
+        ],
+        "mark": {"type": "line", "strokeWidth": 8, "stroke": "transparent"}
+      },
+      {"mark": "line"},
+      { "encoding": {
+        "x": {"aggregate": "max", "field": "year"},
+        "y": {"aggregate": {"argmax": "year"}, "field": "rate"}
+      },
+        "layer": [
+          {"mark": {"type": "circle"}},
+          { "mark": {"type": "text", "align": "left", "dx": 4},
+            "transform": [{"filter": "datum.year == 2021"}],
+            "encoding": {"text": {"field": "country", "type": "nominal"}}
+          }
+        ]
+      }
+    ],
+    "config": {"view": {"stroke": null}}
+  }

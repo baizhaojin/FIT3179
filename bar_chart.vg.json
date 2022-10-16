@@ -1,0 +1,38 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": { "text": "Industry, value added of BRICS in 2000-2021" },
+    "data": {
+        "url": "data/iva.csv"
+    },
+    "params": [
+        {
+          "name": "year_selection",
+          "value": 2000,
+          "bind": {"input": "range", "min": 2000, "max": 2021, "step": 1}
+        }
+      ],
+      "selection": {
+        "continent_selection": {
+          "type": "multi", "fields": ["year"], "bind": "legend"
+        }
+      },
+      "transform":[
+        {"filter": "datum.iva > 0"},
+        {"filter": "datum.year == year_selection"}
+      ],
+    "mark": "bar",
+    "encoding": {
+        "y": { "field": "country", "type": "nominal" },
+        "x": { "field": "iva", "type": "quantitative" ,"title": "Industry, value added(US dollers)"},
+        "fill": {"field": "country",  "type": "nominal","scale": {"domain":["Brazil", "China", "India", "Russia", "South Africa"], "range": ["#377eb8", "#e41a1c", "#377eb8", "#377eb8", "#377eb8"]}},
+        "color": {"field": "country", "type": "nominal","scale": {"domain":["Brazil", "China", "India", "Russia", "South Africa"],"range": ["#377eb8", "#e41a1c", "#377eb8", "#377eb8", "#377eb8"]}},
+        "tooltip": [
+          {"field": "country", "type": "nominal", "title": "Country"},
+          {"field": "iva", "type": "quantitative","title": "Industry, value added(US dollers)"}
+        ]
+    },
+    "opacity": {
+        "condition": {"param": "year_selection", "value": 1},
+        "value": 0.1
+      }
+}

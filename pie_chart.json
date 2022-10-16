@@ -1,0 +1,36 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title":"Share of BRICS gdp in the world",
+    "data": { "url": "data/GDP.csv" },
+    "params": [
+        {
+          "name": "year_selection",
+          "value": 2000,
+          "bind": {"input": "range", "min": 2000, "max": 2021, "step": 1}
+        }
+      ],
+      "selection": {
+        "continent_selection": {
+          "type": "multi", "fields": ["year"], "bind": "legend"
+        }
+      },
+      "transform":[
+        {"filter": "datum.GDP > 0"},
+        {"filter": "datum.year == year_selection"}
+      ],
+    "mark": { "type": "arc"},
+    "encoding": {
+        "theta": {"field": "GDP", "type": "quantitative"},
+        "color": {
+                 "field": "country", "type": "nominal","scale": {"domain":["China", "Brazil", "India", "Russia", "South Africa", "other"],"range": ["#e41a1c", "#984ea3", "#ff7f00", "#a6cee3", "#006400", "#dcdcdc"]}
+          },
+          "tooltip": [
+            {"field": "country", "type": "nominal", "title": "Country"},
+            {"field": "GDP", "type": "quantitative","title": "US dollers"}
+          ]
+    },
+    "opacity": {
+        "condition": {"selection": "year_selection", "value": 0.8},
+        "value": 0.2
+      }
+}
